@@ -39,12 +39,17 @@ function isOpen(index) {
         class="flex justify-between w-full gap-6 text-left cursor-pointer"
         @click="toggle(index)"
       >
-        <p class="text-base font-semibold text-purple-950 md:text-lg">
+        <p class="text-base font-semibold text-purple-950 md:text-lg hover:text-violet-600">
           {{ item.question }}
         </p>
         <component
           :is="isOpen(index) ? IconMinus : IconPlus"
-          class="w-7.5 h-7.5 text-violet-600 shrink-0"
+          :class="[
+              'w-7.5 h-7.5 shrink-0 transition-colors duration-1000',
+              isOpen(index)
+                ? 'text-purple-950'
+                : 'text-violet-600'
+            ]"
         />
       </button>
       <Transition name="accordion">
