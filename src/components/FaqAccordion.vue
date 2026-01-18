@@ -1,6 +1,6 @@
 <script setup>
 import starIcon from '@/assets/images/icon-star.svg'
-import AccordeonItem from '@/components/Accordeon.vue';
+import Accordeon from '@/components/Accordeon.vue';
 
 const items = [
   {
@@ -32,10 +32,10 @@ const items = [
       <div class="size-6 md:size-10">
         <img alt="star" :src="starIcon">
       </div>
-      <h1 class="text-purple-950 font-bold text-[32px] leading-9.5 md:text-[56px]">
+      <h1 class="text-purple-950 font-bold text-[32px] leading-9.5 md:text-[56px] md:leading-16.5">
         FAQs
       </h1>
     </div>
-    <AccordeonItem :items="items"/>
+    <Accordeon :items="items"/>
   </div>
 </template>

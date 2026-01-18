@@ -10,7 +10,21 @@
     },
   })
 
-  const openIndex = ref(null)
+const openIndexes = ref([])
+
+function toggle(index) {
+  const i = openIndexes.value.indexOf(index)
+
+  if (i === -1) {
+    openIndexes.value.push(index)
+  } else {
+    openIndexes.value.splice(i, 1)
+  }
+}
+
+function isOpen(index) {
+  return openIndexes.value.includes(index)
+}
 </script>
 
 <template>
@@ -18,27 +32,47 @@
     <div
       v-for="(item, index) in items"
       :key="item.id"
-      class="border-t border-purple-100 first:border-t-0"
+      class="py-6 border-t border-purple-100 first:border-t-0 first:pt-0 last:pb-0"
     >
       <button
         type="button" 
-        class="flex justify-between w-full gap-6 py-6"
+        class="flex justify-between w-full gap-6 text-left cursor-pointer"
         @click="toggle(index)"
       >
         <p class="text-base font-semibold text-purple-950 md:text-lg">
           {{ item.question }}
         </p>
         <component
-          :is="openIndex === index ? IconMinus : IconPlus"
+          :is="isOpen(index) ? IconMinus : IconPlus"
           class="w-7.5 h-7.5 text-violet-600 shrink-0"
         />
       </button>
-      <div class="mb-6">
-        <p class="text-sm leading-normal text-purple-600 md:text-base">
-          {{ item.answer }}
-        </p>
-      </div>
+      <Transition name="accordion">
+        <div class="mt-6 overflow-hidden" v-show="isOpen(index)">
+          <p class="text-sm leading-normal text-purple-600 md:text-base">
+            {{ item.answer }}
+          </p>
+        </div>
+      </Transition>
     </div>
   </div>
-  
 </template>
+
+<style>
+  .accordion-enter-active,
+  .accordion-leave-active {
+    transition: max-height 300ms ease, opacity 200ms ease;
+  }
+
+  .accordion-enter-from,
+  .accordion-leave-to {
+    transform: translateY(-8px);
+    opacity: 0;
+  }
+
+  .accordion-enter-to,
+  .accordion-leave-from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+</style>

@@ -1,5 +1,5 @@
 <script setup>
-import AccordeonComponent from './components/AccordeonComponent.vue';
+import FaqAccordion from './components/FaqAccordion.vue';
 import AppFooter from './components/layout/AppFooter.vue';
 import AppMain from './components/layout/AppMain.vue';
 
@@ -10,8 +10,8 @@ import AppMain from './components/layout/AppMain.vue';
     <AppMain>
       <section class="w-full bg-purple-100">
         <div class="w-full min-h-57.5 pt-6 px-6 pb-0 bg-[url('@/assets/images/background-pattern-desktop.svg')] bg-no-repeat bg-position-[center_-60px] md:min-h-80 md:bg-position-[center_top]"></div>
-        <div class="relative px-6 pt-0 pb-6">
-          <AccordeonComponent />
+        <div class="relative px-6 pt-0 pb-12">
+          <FaqAccordion />
         </div>
       </section>
     </AppMain>
